@@ -1,0 +1,15 @@
+class ChannelAdvisor
+	include HTTParty
+	
+	headers {'DeveloperKey' => ENV['channeladvisor_developer_key'], 'Password' => ENV['channeladvisor_password']}
+	
+	base_uri 'https://api.channeladvisor.com/ChannelAdvisorAPI/v7/InventoryService.asmx'
+	
+	def initialize()
+		@options = { query: {'accountID' => ENV['channeladvisor_account_id'], 'sku' => "ACC-1"} }
+	end
+
+	def get_inventory_quantity
+		self.class.call("GetInventoryQuantity", @options)
+	end
+end

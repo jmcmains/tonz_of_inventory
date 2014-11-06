@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
   
  	def update_inventory
  		session[:last_page] = request.env['HTTP_REFERER'] || products_url
-		@product.update_attributes(inventory: SkuVault.new.get_kit_quantity(@product.sku))
+		@product.update_attributes(inventory: SkuVault.new.get_warehouse_item_quantity(@product.sku))
 		redirect_to session[:last_page]
 	end
 

@@ -2,10 +2,10 @@
 
 one:
   sku: MyString
-  price: 1.5
+  wholesale_price: 1.5
   inventory: 1
 
 two:
   sku: MyString
-  price: 1.5
+  wholesale_price: 1.5
   inventory: 1
