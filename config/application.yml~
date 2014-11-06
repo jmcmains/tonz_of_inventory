@@ -9,3 +9,10 @@
 # production:
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+tenant_token: "4gswmDXQC6L6IIm0PHSkUcJY633BkD1IyJwmMF/SZbc="
+user_token: "+Kh9kxVBPkxJ4stPdNsmPCTcb/GwQxGbVTtAFfwjYdE="
+warehouse_id: "174"
+ca_developer_key: "d8c64fd6-9651-4918-a506-731152488188"
+ca_password: "Bandtastic2014!"
+ca_account_id: "12016851"

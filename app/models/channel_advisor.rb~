@@ -9,6 +9,6 @@ class ChannelAdvisor
 	end
 
 	def get_inventory_quantity
-		self.class.get("GetInventoryQuantity",@options)
+		self.class.post("GetInventoryQuantity",@options)
 	end
 end

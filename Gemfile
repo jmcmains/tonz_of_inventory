@@ -7,6 +7,8 @@ gem 'rails'
 group :development do
 gem 'sqlite3'
 end
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
@@ -15,11 +17,9 @@ gem 'spring',        group: :development
 gem 'httparty'
 gem 'figaro'
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

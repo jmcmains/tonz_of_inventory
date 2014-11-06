@@ -14,11 +14,13 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+   	session[:last_page] = request.env['HTTP_REFERER'] || products_url
     @product = Product.new
   end
 
   # GET /products/1/edit
   def edit
+  	session[:last_page] = request.env['HTTP_REFERER'] || products_url
   end
 
   # POST /products
@@ -28,7 +30,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to session[:last_page], notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to session[:last_page], notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -53,7 +55,7 @@ class ProductsController < ApplicationController
   
  	def update_inventory
  		session[:last_page] = request.env['HTTP_REFERER'] || products_url
-		@product.update_attributes(inventory: SkuVault.new.get_warehouse_item_quantity(@product.sku))
+		@product.update_attributes(inventory: SkuVault.new.get_kit_quantity(@product.sku))
 		redirect_to session[:last_page]
 	end
 
