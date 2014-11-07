@@ -8,9 +8,12 @@ class SkuVault
 	end
 
 	def get_item_quantities
-		self.class.post("https://app.skuvault.com/api/inventory/getItemQuantities", @options).parsed_response["Items"]
+		kits=self.class.post("https://app.skuvault.com/api/inventory/getItemQuantities", @options).parsed_response["Items"]
+		k2=kits.inject({}) do |s,q|
+			s.merge!({q["Sku"] => q["AvailableQuantity"]})
+		end
 	end
-
+	
 	def get_kit_quantities
 		kits=self.class.post("https://app.skuvault.com/api/inventory/getKitQuantities", @options).parsed_response["Kits"]
 		k2=kits.inject({}) do |s,q|
@@ -23,18 +26,16 @@ class SkuVault
 		return k2[sku]
 	end
 	
-	def get_products
-		self.class.post("https://app.skuvault.com/api/products/getProducts", @options)
+	def get_items
+		products=self.class.post("https://app.skuvault.com/api/products/getProducts", @options).parsed_response["Products"]
+		k2=products.inject({}) do |s,q|
+			s.merge!({q["Sku"] => q})
+		end
 	end
 	
-	def get_warehouse_item_quantities
-		self.class.post("https://app.skuvault.com/api/inventory/GetWarehouseItemQuantities", @options).parsed_response["IntemQuantities"]
-	end
-	
-	def get_warehouse_item_quantity(sku)
+	def get_item_quantity(sku)
 		@options[:query]["Sku"]= sku
 		self.class.post("https://app.skuvault.com/api/inventory/GetWarehouseItemQuantity", @options).parsed_response["TotalQuantityOnHand"]
 	end
-
 
 end

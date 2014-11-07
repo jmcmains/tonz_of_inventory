@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.update_inventory
 		@products = Product.all
     respond_to do |format|
       if @product.save
@@ -56,7 +57,7 @@ class ProductsController < ApplicationController
   
  	def update_inventory
  		session[:last_page] = request.env['HTTP_REFERER'] || products_url
-		@product.update_attributes(inventory: SkuVault.new.get_kit_quantity(@product.sku))
+		@product.update_inventory
 		redirect_to session[:last_page]
 	end
 	
