@@ -20,4 +20,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_product_path %> | <%= link_to 'Update All Inventory', update_all_inventory_products_path %>

@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.update_inventory
 		@products = Product.all
     respond_to do |format|
       if @product.save
@@ -37,6 +38,12 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def ftp
+  	session[:last_page] = request.env['HTTP_REFERER'] || products_url
+  	Product.to_xml
+  	redirect_to session[:last_page]
   end
 	
   # PATCH/PUT /products/1

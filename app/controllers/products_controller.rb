@@ -39,6 +39,12 @@ class ProductsController < ApplicationController
       end
     end
   end
+  
+  def ftp
+  	session[:last_page] = request.env['HTTP_REFERER'] || products_url
+  	Product.to_xlsx
+  	redirect_to session[:last_page]
+  end
 	
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json

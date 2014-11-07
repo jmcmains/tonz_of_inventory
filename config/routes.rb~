@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   	member do
   		get :update_inventory
   	end
+  	collection do
+  		get :update_all_inventory
+  	end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   	end
   	collection do
   		get :update_all_inventory
+  		get :ftp
   	end
   end
 
