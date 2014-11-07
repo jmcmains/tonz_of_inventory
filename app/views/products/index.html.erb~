@@ -1,7 +1,6 @@
 <h1>Listing products</h1>
 <%= form_for(Product.new) do |f| %>
     <%= f.text_field :sku, placeholder: "Enter SKU Here" %>
-
     <%= f.submit %>
 <% end %>
 <table class="table">

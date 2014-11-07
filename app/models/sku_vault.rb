@@ -12,14 +12,14 @@ class SkuVault
 	end
 
 	def get_kit_quantities
-		self.class.post("https://app.skuvault.com/api/inventory/getKitQuantities", @options).parsed_response["Kits"]
-	end
-	
-	def get_kit_quantity(sku)
 		kits=self.class.post("https://app.skuvault.com/api/inventory/getKitQuantities", @options).parsed_response["Kits"]
 		k2=kits.inject({}) do |s,q|
 			s.merge!({q["Sku"] => q["AvailableQuantity"]})
 		end
+	end
+	
+	def get_kit_quantity(sku)
+		k2=self.get_kit_quantities
 		return k2[sku]
 	end
 	

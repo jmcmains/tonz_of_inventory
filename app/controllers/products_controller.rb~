@@ -27,10 +27,10 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+		@products = Product.all
     respond_to do |format|
       if @product.save
-        format.html { redirect_to session[:last_page], notice: 'Product was successfully created.' }
+        format.html { redirect_to session[:last_page] || products_url, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+  	
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to session[:last_page], notice: 'Product was successfully updated.' }

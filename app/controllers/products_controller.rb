@@ -59,6 +59,12 @@ class ProductsController < ApplicationController
 		@product.update_attributes(inventory: SkuVault.new.get_kit_quantity(@product.sku))
 		redirect_to session[:last_page]
 	end
+	
+	def update_all_inventory
+ 		session[:last_page] = request.env['HTTP_REFERER'] || products_url
+		Product.update_inventory 
+		redirect_to session[:last_page]
+	end
 
   # DELETE /products/1
   # DELETE /products/1.json
